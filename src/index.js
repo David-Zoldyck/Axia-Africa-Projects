@@ -1,10 +1,10 @@
-
 const express = require("express");
 const mongoose = require("mongoose");
 require("dotenv").config(); // Load environment variables
 
-const authMiddleware = require("./middleware/authMiddleware")
-const authRoutes = require("./routes/authRoutes")
+const authMiddleware = require("./middleware/authMiddleware");
+const authRoutes = require("./routes/authRoutes");
+const postRoutes = require("./routes/postRoutes");
 
 const app = express();
 const PORT = 3000;
@@ -12,7 +12,8 @@ const DB_URI = process.env.DB_URI || "mongodb://localhost:27017/axia-africa";
 
 app.use(express.json());
 
-app.use("/api/users", authRoutes)
+app.use("/api/users", authRoutes);
+app.use("/api/posts", postRoutes);
 
 // Function to connect to the database and start the server
 const startServer = async () => {
